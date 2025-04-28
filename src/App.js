@@ -1,32 +1,28 @@
 import './App.css';
 import Header  from './Header';
-import Post from './Post';
-import SideMenu from './SideMenu';
+import Article from './Article';
 function App() {
+
+  const firstContent = `yahayahahdasjvjasd`;
+  const secondContent = `ksdjfhdsmjfhkdsjfhjksd`;
   return (
     <div className="App">
       <Header />
-      <div style={{display: "flex",justifyContent: "center"}}>
-        {/* POST & SIDE MENU CONTAINER */}
-        <div style={{ display: "flex", width: "60%" }}>
-          {/* POST CONTAINER */}
-          <div style={{ width: "70%" }}>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-            <Post />
-          </div>
-          {/* === POST CONTAINER === */}
-
-          {/* SIDE MENU CONTAINER */}
-          <div style={{ width: "30%"}}>
-            <SideMenu />
-          </div>
-          {/* === SIDE MENU CONTAINER === */}
+      <Article content={firstContent} personName="yahya" email="yahya@gmail.com" bio="ALhamdullah">
+        <div>
+          <h1>Yahya</h1>
+          <p style={{backgroundColor:"green"}}>Yahya is a software engineer with a passion for coding.</p>
+          <p>He loves to learn new technologies and improve his skills.</p>
         </div>
-        {/* POST & SIDE MENU CONTAINER */}
-      </div>
+      </Article>
+      <Article personName="Amer" email = "haha@gmail.com" bio = "oaskdpmdfsnbndf" content={secondContent}>
+        <div>
+          <h1>Amer</h1>
+          <p style={{backgroundColor:"red"}}>Amer is a software engineer with a passion for coding.</p>
+          <p>He loves to learn new technologies and improve his skills.</p>
+        </div>
+      </Article>
+      
     </div>
   );
 }
