@@ -1,27 +1,23 @@
 import './App.css';
 import Header  from './Header';
-import Article from './Article';
+import Post from './Post';
 function App() {
 
-  const firstContent = `yahayahahdasjvjasd`;
-  const secondContent = `ksdjfhdsmjfhkdsjfhjksd`;
+
   return (
     <div className="App">
       <Header />
-      <Article content={firstContent} personName="yahya" email="yahya@gmail.com" bio="ALhamdullah">
-        <div>
-          <h1>Yahya</h1>
-          <p style={{backgroundColor:"green"}}>Yahya is a software engineer with a passion for coding.</p>
-          <p>He loves to learn new technologies and improve his skills.</p>
-        </div>
-      </Article>
-      <Article personName="Amer" email = "haha@gmail.com" bio = "oaskdpmdfsnbndf" content={secondContent}>
-        <div>
-          <h1>Amer</h1>
-          <p style={{backgroundColor:"red"}}>Amer is a software engineer with a passion for coding.</p>
-          <p>He loves to learn new technologies and improve his skills.</p>
-        </div>
-      </Article>
+      
+      <div style={{width: "70%"}}>
+        <Post postName = "Yahya Shanaah" postType = "Mahmoud Shanaah">
+          <p>Yahya Shanaah is a software engineer with a passion for web development and a knack for problem-solving. He enjoys creating user-friendly applications and is always eager to learn new technologies.</p>
+        </Post>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+        <Post/>
+      </div>
       
     </div>
   );
