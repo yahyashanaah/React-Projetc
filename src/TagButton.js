@@ -1,6 +1,14 @@
 import "./TagButtonStyle.css";
-export default function TagButton(){
+export default function TagButton({firstName, lastName}) {
     return (
-        <button className="tagButton">Click Me</button>
+      <div>
+        {firstName == null || firstName === "" ? (
+          <h1>hahahahaha</h1>
+        ) : (
+          <button className="tagButton">
+            Click Me {firstName} or {lastName}
+          </button>
+        )}
+      </div>
     );
 }
