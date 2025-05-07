@@ -1,61 +1,42 @@
 import './App.css';
-import Header  from './Header';
-import Post from './Post';
-import SideMenu from './SideMenu';
+import FormWithState from './FormWithState';
 
-const showCategory = true;
 
-const listOfPoests = [
-  {
-    id : 1,
-    postName: "Post 1",
-    postType: "This is the content of post 1",
-  },
-  {
-    id : 2,
-    postName: "Post 2",
-    postType: "This is the content of post 2",
-  },
-  {
-    id : 3,
-    postName: "Post 3",
-    postType: "This is the content of post 3",
-  },
-  {
-    id : 4,
-    postName: "Post 4",
-    postType: "This is the content of post 4",
-  },
-]
+
 function App() {
   return (
     <div className="App">
-      <Header />
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div
-          style={{ width: "60%", display: "flex", justifyContent: "center" }}
+      <header className="App-header">
+        <h1>My First React App</h1>
+        <FormWithState />
+      </header>
+      <p>
+        Edit <code>src/App.js</code> and save to reload.
+      </p>
+      <p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <div style={{ width: "70%" }}>
-            {listOfPoests.map((post) => (
-              <Post key={post.id} postName={post.postName} postType={post.postType} />
-            ))}
-          </div>
-          <div style={{ width: "30%" }}>
-            <AppSideMenu />
-          </div>
-        </div>
-      </div>
+          Learn React
+        </a>
+      </p>
+      <p>
+        <a
+          className="App-link"
+          href="https://reactjs.org/docs/getting-started.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Getting Started
+        </a>
+      </p>
     </div>
   );
 }
 
-function AppSideMenu() {
- if(showCategory === true) {
-    return <SideMenu />
-  }
-  else {
-    return null;
-  }
-}
+
 
 export default App;
