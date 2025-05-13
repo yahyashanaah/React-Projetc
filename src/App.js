@@ -13,26 +13,6 @@ function App() {
       <p>
         Edit <code>src/App.js</code> and save to reload.
       </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </p>
-      <p>
-        <a
-          className="App-link"
-          href="https://reactjs.org/docs/getting-started.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Getting Started
-        </a>
-      </p>
     </div>
   );
 }
