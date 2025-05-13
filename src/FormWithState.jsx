@@ -1,28 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function LiveClock() {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    // Set up the timer to update every second
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    // Cleanup function to stop the timer when component unmounts
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (date) => {
-    return date.toLocaleTimeString(); // "10:42:23 AM"
-  };
+function ShowHideDetails() {
+  const [show, setShow] = useState(false);
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
-      <h2>Live Clock 🕒</h2>
-      <h1>{formatTime(time)}</h1>
+    <div style={{ padding: '20px' }}>
+      <h2>Product Info</h2>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Hide' : 'Show'} Details
+      </button>
+
+      {show && (
+        <div style={{ marginTop: '10px' }}>
+          <p><strong>Product:</strong> React T-shirt</p>
+          <p><strong>Price:</strong> $19.99</p>
+        </div>
+      )}
     </div>
   );
 }
 
-export default LiveClock;
+export default ShowHideDetails;
