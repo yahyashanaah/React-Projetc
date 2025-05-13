@@ -1,73 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function ProductForm() {
-  const [product, setProduct] = useState({
-    name: '',
-    price: '',
-    category: ''
-  });
+function LiveClock() {
+  const [time, setTime] = useState(new Date());
 
-  const [error, setError] = useState('');
+  useEffect(() => {
+    // Set up the timer to update every second
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProduct(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    // Cleanup function to stop the timer when component unmounts
+    return () => clearInterval(timer);
+  }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Validation
-    if (!product.name || !product.price || !product.category) {
-      setError('All fields are required!');
-      return;
-    }
-
-    if (isNaN(product.price)) {
-      setError('Price must be a number!');
-      return;
-    }
-
-    // If valid
-    setError('');
-    alert(`Product Added: ${product.name}, $${product.price}, ${product.category}`);
-    setProduct({ name: '', price: '', category: '' }); // reset form
+  const formatTime = (date) => {
+    return date.toLocaleTimeString(); // "10:42:23 AM"
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Add Product</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          name="name"
-          value={product.name}
-          placeholder="Product Name"
-          onChange={handleChange}
-        />
-        <br /><br />
-        <input
-          name="price"
-          value={product.price}
-          placeholder="Price"
-          onChange={handleChange}
-        />
-        <br /><br />
-        <input
-          name="category"
-          value={product.category}
-          placeholder="Category"
-          onChange={handleChange}
-        />
-        <br /><br />
-        <button type="submit">Add Product</button>
-      </form>
-
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+      <h2>Live Clock 🕒</h2>
+      <h1>{formatTime(time)}</h1>
     </div>
   );
 }
 
-export default ProductForm;
+export default LiveClock;
