@@ -1,79 +1,73 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-function FormWithState() {
-  // Step 1: Create state for form inputs
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+function ProductForm() {
+  const [product, setProduct] = useState({
+    name: '',
+    price: '',
+    category: ''
   });
 
-  // Step 2: Handle input change
+  const [error, setError] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setProduct(prev => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
   };
 
-  // Step 3: Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
 
-    // Reset form after submission
-    setFormData({ name: "", email: "", message: "" });
+    // Validation
+    if (!product.name || !product.price || !product.category) {
+      setError('All fields are required!');
+      return;
+    }
+
+    if (isNaN(product.price)) {
+      setError('Price must be a number!');
+      return;
+    }
+
+    // If valid
+    setError('');
+    alert(`Product Added: ${product.name}, $${product.price}, ${product.category}`);
+    setProduct({ name: '', price: '', category: '' }); // reset form
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-4 border rounded">
-      <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+    <div style={{ padding: '20px' }}>
+      <h2>Add Product</h2>
       <form onSubmit={handleSubmit}>
-        <label className="block mb-2">
-          Name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
-            required
-          />
-        </label>
-
-        <label className="block mb-2">
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
-            required
-          />
-        </label>
-
-        <label className="block mb-4">
-          Message:
-          <textarea
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
-            required
-          />
-        </label>
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-        >
-          Submit
-        </button>
+        <input
+          name="name"
+          value={product.name}
+          placeholder="Product Name"
+          onChange={handleChange}
+        />
+        <br /><br />
+        <input
+          name="price"
+          value={product.price}
+          placeholder="Price"
+          onChange={handleChange}
+        />
+        <br /><br />
+        <input
+          name="category"
+          value={product.category}
+          placeholder="Category"
+          onChange={handleChange}
+        />
+        <br /><br />
+        <button type="submit">Add Product</button>
       </form>
+
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 }
 
-export default FormWithState;
+export default ProductForm;
