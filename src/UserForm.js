@@ -1,9 +1,9 @@
-// UserForm.js
-import { useContext } from "react";
-import FormContext from "./FormContext";
+import { useSelector, useDispatch } from 'react-redux';
+import { updateForm } from './store';
 
 function UserForm({ onNext }) {
-  const { formData, updateFormData } = useContext(FormContext);
+  const form = useSelector((state) => state.form);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -11,17 +11,15 @@ function UserForm({ onNext }) {
       <input
         type="text"
         placeholder="Name"
-        value={formData.name}
-        onChange={(e) => updateFormData({ name: e.target.value })}
-      />
-      <br />
+        value={form.name}
+        onChange={(e) => dispatch(updateForm({ name: e.target.value }))}
+      /><br />
       <input
         type="email"
         placeholder="Email"
-        value={formData.email}
-        onChange={(e) => updateFormData({ email: e.target.value })}
-      />
-      <br />
+        value={form.email}
+        onChange={(e) => dispatch(updateForm({ email: e.target.value }))}
+      /><br />
       <button onClick={onNext}>Next</button>
     </div>
   );

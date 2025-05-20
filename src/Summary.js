@@ -1,18 +1,25 @@
-import { useContext } from "react";
-import FormContext from "./FormContext";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { resetForm } from './store';
 
 function Summary({ onBack }) {
-  const { formData } = useContext(FormContext);
+  const form = useSelector((state) => state.form);
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    alert("Form submitted:\n" + JSON.stringify(form, null, 2));
+    dispatch(resetForm());
+  };
 
   return (
     <div>
       <h2>Summary</h2>
-      <p><strong>Name:</strong> {formData.name}</p>
-      <p><strong>Email:</strong> {formData.email}</p>
-      <p><strong>Address:</strong> {formData.address}</p>
-      <p><strong>City:</strong> {formData.city}</p>
+      <p><strong>Name:</strong> {form.name}</p>
+      <p><strong>Email:</strong> {form.email}</p>
+      <p><strong>Address:</strong> {form.address}</p>
+      <p><strong>City:</strong> {form.city}</p>
       <button onClick={onBack}>Back</button>
-      <button onClick={() => alert("Form Submitted!")}>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

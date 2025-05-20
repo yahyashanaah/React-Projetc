@@ -1,8 +1,9 @@
-import { useContext } from "react";
-import FormContext from "./FormContext";
+import { useSelector, useDispatch } from 'react-redux';
+import { updateForm } from './store';
 
 function AddressForm({ onNext, onBack }) {
-  const { formData, updateFormData } = useContext(FormContext);
+  const form = useSelector((state) => state.form);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -10,17 +11,15 @@ function AddressForm({ onNext, onBack }) {
       <input
         type="text"
         placeholder="Address"
-        value={formData.address}
-        onChange={(e) => updateFormData({ address: e.target.value })}
-      />
-      <br />
+        value={form.address}
+        onChange={(e) => dispatch(updateForm({ address: e.target.value }))}
+      /><br />
       <input
         type="text"
         placeholder="City"
-        value={formData.city}
-        onChange={(e) => updateFormData({ city: e.target.value })}
-      />
-      <br />
+        value={form.city}
+        onChange={(e) => dispatch(updateForm({ city: e.target.value }))}
+      /><br />
       <button onClick={onBack}>Back</button>
       <button onClick={onNext}>Next</button>
     </div>
